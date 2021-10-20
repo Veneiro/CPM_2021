@@ -33,6 +33,7 @@ import javax.swing.border.EmptyBorder;
 import logic.Menu;
 import logic.Order;
 import logic.Product;
+import java.awt.Font;
 
 public class MainWindow extends JFrame {
 
@@ -73,6 +74,10 @@ public class MainWindow extends JFrame {
 	private JButton btnFilterDrinks;
 	private JButton btnFilterComplements;
 	private JButton btnFilterDesserts;
+	private JLabel lblNewLabel;
+	private JLabel lblDiscountOn;
+	private JLabel lblNewLabel_1_1;
+	private JLabel lblNewLabel_1_1_1;
 
 	/**
 	 * Create the frame.
@@ -89,7 +94,7 @@ public class MainWindow extends JFrame {
 				.getImage(MainWindow.class.getResource("/img/logo.PNG")));
 		setTitle("McDonald's POS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 616, 451);
+		setBounds(100, 100, 629, 451);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -114,6 +119,10 @@ public class MainWindow extends JFrame {
 		contentPane.add(getBtnDelete());
 		contentPane.add(getLblPicture());
 		contentPane.add(getPanel());
+		contentPane.add(getLblNewLabel());
+		contentPane.add(getLblDiscountOn());
+		contentPane.add(getLblNewLabel_1_1());
+		contentPane.add(getLblNewLabel_1_1_1());
 		updateComboComponent();
 	}
 
@@ -148,7 +157,7 @@ public class MainWindow extends JFrame {
 				}
 			});
 			cbProducts.setToolTipText("List of availible products");
-			cbProducts.setBounds(118, 208, 212, 22);
+			cbProducts.setBounds(118, 208, 267, 22);
 			DefaultComboBoxModel df = new DefaultComboBoxModel();
 			for (Product p : menu.getProducts()) {
 				df.addElement(p);
@@ -169,7 +178,7 @@ public class MainWindow extends JFrame {
 			spUnits.setToolTipText("How many units of this product you want");
 			spUnits.setModel(new SpinnerNumberModel(new Integer(1),
 					new Integer(1), null, new Integer(1)));
-			spUnits.setBounds(340, 209, 43, 20);
+			spUnits.setBounds(395, 208, 89, 22);
 		}
 		return spUnits;
 	}
@@ -187,7 +196,7 @@ public class MainWindow extends JFrame {
 					DecimalFormat formato1 = new DecimalFormat("#.00");
 					order.add((Product) cbProducts.getSelectedItem(),
 							(int) spUnits.getValue());
-					String d = formato1.format(order.getPrice()) + " \u20AC";
+					String d = formato1.format(order.getPriceMcHappy()) + " \u20AC";
 					txtPrice.setText(d);
 					txtCart.setText(order.toString());
 					if (!btnNext.isEnabled()) {
@@ -198,7 +207,7 @@ public class MainWindow extends JFrame {
 			btnAdd.setToolTipText("Add the selected product to the order");
 			btnAdd.setMnemonic('a');
 			btnAdd.setBackground(Color.GREEN);
-			btnAdd.setBounds(395, 208, 89, 23);
+			btnAdd.setBounds(494, 208, 89, 23);
 		}
 		return btnAdd;
 	}
@@ -296,7 +305,7 @@ public class MainWindow extends JFrame {
 	private JLabel getLblOrderPrice() {
 		if (lblOrderPrice == null) {
 			lblOrderPrice = new JLabel("Order price: ");
-			lblOrderPrice.setBounds(395, 261, 89, 14);
+			lblOrderPrice.setBounds(494, 286, 89, 14);
 		}
 		return lblOrderPrice;
 	}
@@ -312,7 +321,7 @@ public class MainWindow extends JFrame {
 			txtPrice.setText("0,0 \u20AC");
 			txtPrice.setToolTipText("Total amount of the order");
 			txtPrice.setEditable(false);
-			txtPrice.setBounds(395, 286, 89, 20);
+			txtPrice.setBounds(494, 311, 89, 20);
 			txtPrice.setColumns(10);
 		}
 		return txtPrice;
@@ -328,7 +337,7 @@ public class MainWindow extends JFrame {
 			lblUnits = new JLabel("Units:");
 			lblUnits.setLabelFor(getSpUnits());
 			lblUnits.setDisplayedMnemonic('U');
-			lblUnits.setBounds(340, 184, 89, 14);
+			lblUnits.setBounds(395, 183, 89, 14);
 		}
 		return lblUnits;
 	}
@@ -354,7 +363,7 @@ public class MainWindow extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(395, 59, 188, 113);
+			scrollPane.setBounds(382, 59, 201, 113);
 			scrollPane.setViewportView(getTxtCart());
 		}
 		return scrollPane;
@@ -370,7 +379,7 @@ public class MainWindow extends JFrame {
 			lblOrder = new JLabel("");
 			lblOrder.setIcon(new ImageIcon(
 					MainWindow.class.getResource("/img/order (1).png")));
-			lblOrder.setBounds(395, 11, 188, 49);
+			lblOrder.setBounds(382, 11, 201, 49);
 		}
 		return lblOrder;
 	}
@@ -390,7 +399,7 @@ public class MainWindow extends JFrame {
 
 				}
 			});
-			btnDelete.setBounds(494, 208, 89, 23);
+			btnDelete.setBounds(494, 242, 89, 23);
 		}
 		return btnDelete;
 	}
@@ -610,5 +619,49 @@ public class MainWindow extends JFrame {
 			btnFilterDesserts.setBackground(Color.WHITE);
 		}
 		return btnFilterDesserts;
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("MC HAPPY DAY!!!");
+			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblNewLabel.setForeground(Color.RED);
+			lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+			lblNewLabel.setBounds(364, 258, 143, 20);
+		}
+		return lblNewLabel;
+	}
+	private JLabel getLblDiscountOn() {
+		if (lblDiscountOn == null) {
+			lblDiscountOn = new JLabel("10% DISCOUNT");
+			lblDiscountOn.setHorizontalAlignment(SwingConstants.CENTER);
+			lblDiscountOn.setForeground(Color.RED);
+			lblDiscountOn.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblDiscountOn.setVerticalAlignment(SwingConstants.TOP);
+			lblDiscountOn.setBounds(364, 277, 143, 20);
+		}
+		return lblDiscountOn;
+	}
+	private JLabel getLblNewLabel_1_1() {
+		if (lblNewLabel_1_1 == null) {
+			lblNewLabel_1_1 = new JLabel("ON PURCHASES");
+			lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_1_1.setForeground(Color.RED);
+			lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblNewLabel_1_1.setVerticalAlignment(SwingConstants.TOP);
+			lblNewLabel_1_1.setBounds(363, 297, 144, 20);
+		}
+		return lblNewLabel_1_1;
+	}
+	private JLabel getLblNewLabel_1_1_1() {
+		if (lblNewLabel_1_1_1 == null) {
+			lblNewLabel_1_1_1 = new JLabel("ABOVE 50\u20AC");
+			lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_1_1_1.setForeground(Color.RED);
+			lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblNewLabel_1_1_1.setVerticalAlignment(SwingConstants.TOP);
+			lblNewLabel_1_1_1.setBounds(363, 316, 144, 20);
+		}
+		return lblNewLabel_1_1_1;
 	}
 }

@@ -1,5 +1,6 @@
 package logic;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,13 +64,26 @@ public class Order {
 	}
 	
 	public String toString() {
+		DecimalFormat formato1 = new DecimalFormat("#.00");
 		String aux = "";
 		for (Product product : orderList) {
 			aux += product.getName() + " - uds: " + product.getUnits() + "\n";
 			aux += "\n";
 		}
-		aux += "Final Price: " + getPrice();
+		aux += "Final Price: " + formato1.format(getPriceMcHappy()) + " \u20AC";
 		return aux;
+	}
+
+	public float getPriceMcHappy() {
+		float total = 0.0f;
+		for (Product a : orderList){
+			total += a.getPrice()* a.getUnits();
+		}
+		if (total > 50.0) {
+			float disc = (float) (total * 0.10);
+			total = total - disc;
+		}
+		return total;
 	}
 }
 
