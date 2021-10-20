@@ -69,10 +69,10 @@ public class MainWindow extends JFrame {
 	private JMenuItem mntmContents;
 	private JSeparator separator_1;
 	private JPanel panel;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
-	private JButton btnNewButton_2;
-	private JButton btnNewButton_3;
+	private JButton btnFilterBurguers;
+	private JButton btnFilterDrinks;
+	private JButton btnFilterComplements;
+	private JButton btnFilterDesserts;
 
 	/**
 	 * Create the frame.
@@ -217,6 +217,11 @@ public class MainWindow extends JFrame {
 					order.initialize();
 					txtPrice.setText("0,0 \u20AC");
 					txtCart.setText("");
+					DefaultComboBoxModel df = new DefaultComboBoxModel();
+					for (Product p : menu.getProducts()) {
+						df.addElement(p);
+					}
+					cbProducts.setModel(df);
 				}
 			});
 			btnCancel.setToolTipText("Cancel your order");
@@ -523,51 +528,87 @@ public class MainWindow extends JFrame {
 			panel = new JPanel();
 			panel.setBounds(0, 0, 108, 393);
 			panel.setLayout(new GridLayout(4, 0, 0, 0));
-			panel.add(getBtnNewButton());
-			panel.add(getBtnNewButton_1());
-			panel.add(getBtnNewButton_2());
-			panel.add(getBtnNewButton_3());
+			panel.add(getBtnFilterBurguers());
+			panel.add(getBtnFilterDrinks());
+			panel.add(getBtnFilterComplements());
+			panel.add(getBtnFilterDesserts());
 		}
 		return panel;
 	}
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("Burguer");
-			btnNewButton.setVerticalTextPosition(SwingConstants.BOTTOM);
-			btnNewButton.setHorizontalTextPosition(SwingConstants.CENTER);
-			btnNewButton.setIcon(new ImageIcon(MainWindow.class.getResource("/img/Burguer.png")));
-			btnNewButton.setBackground(Color.WHITE);
+	private JButton getBtnFilterBurguers() {
+		if (btnFilterBurguers == null) {
+			btnFilterBurguers = new JButton("Burguer");
+			btnFilterBurguers.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DefaultComboBoxModel df = new DefaultComboBoxModel();
+					for (Product p : menu.getProductsByType("HA")) {
+						df.addElement(p);
+					}
+					cbProducts.setModel(df);
+				}
+			});
+			btnFilterBurguers.setVerticalTextPosition(SwingConstants.BOTTOM);
+			btnFilterBurguers.setHorizontalTextPosition(SwingConstants.CENTER);
+			btnFilterBurguers.setIcon(new ImageIcon(MainWindow.class.getResource("/img/Burguer.png")));
+			btnFilterBurguers.setBackground(Color.WHITE);
 		}
-		return btnNewButton;
+		return btnFilterBurguers;
 	}
-	private JButton getBtnNewButton_1() {
-		if (btnNewButton_1 == null) {
-			btnNewButton_1 = new JButton("Drinks");
-			btnNewButton_1.setHorizontalTextPosition(SwingConstants.CENTER);
-			btnNewButton_1.setVerticalTextPosition(SwingConstants.BOTTOM);
-			btnNewButton_1.setIcon(new ImageIcon(MainWindow.class.getResource("/img/Drink.png")));
-			btnNewButton_1.setBackground(Color.WHITE);
+	private JButton getBtnFilterDrinks() {
+		if (btnFilterDrinks == null) {
+			btnFilterDrinks = new JButton("Drinks");
+			btnFilterDrinks.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DefaultComboBoxModel df = new DefaultComboBoxModel();
+					for (Product p : menu.getProductsByType("BE")) {
+						df.addElement(p);
+					}
+					cbProducts.setModel(df);
+				}
+			});
+			btnFilterDrinks.setHorizontalTextPosition(SwingConstants.CENTER);
+			btnFilterDrinks.setVerticalTextPosition(SwingConstants.BOTTOM);
+			btnFilterDrinks.setIcon(new ImageIcon(MainWindow.class.getResource("/img/Drink.png")));
+			btnFilterDrinks.setBackground(Color.WHITE);
 		}
-		return btnNewButton_1;
+		return btnFilterDrinks;
 	}
-	private JButton getBtnNewButton_2() {
-		if (btnNewButton_2 == null) {
-			btnNewButton_2 = new JButton("Complements");
-			btnNewButton_2.setHorizontalTextPosition(SwingConstants.CENTER);
-			btnNewButton_2.setVerticalTextPosition(SwingConstants.BOTTOM);
-			btnNewButton_2.setIcon(new ImageIcon(MainWindow.class.getResource("/img/Sides.png")));
-			btnNewButton_2.setBackground(Color.WHITE);
+	private JButton getBtnFilterComplements() {
+		if (btnFilterComplements == null) {
+			btnFilterComplements = new JButton("Complements");
+			btnFilterComplements.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DefaultComboBoxModel df = new DefaultComboBoxModel();
+					for (Product p : menu.getProductsByType("CO")) {
+						df.addElement(p);
+					}
+					cbProducts.setModel(df);
+				}
+			});
+			btnFilterComplements.setHorizontalTextPosition(SwingConstants.CENTER);
+			btnFilterComplements.setVerticalTextPosition(SwingConstants.BOTTOM);
+			btnFilterComplements.setIcon(new ImageIcon(MainWindow.class.getResource("/img/Sides.png")));
+			btnFilterComplements.setBackground(Color.WHITE);
 		}
-		return btnNewButton_2;
+		return btnFilterComplements;
 	}
-	private JButton getBtnNewButton_3() {
-		if (btnNewButton_3 == null) {
-			btnNewButton_3 = new JButton("Desserts");
-			btnNewButton_3.setHorizontalTextPosition(SwingConstants.CENTER);
-			btnNewButton_3.setVerticalTextPosition(SwingConstants.BOTTOM);
-			btnNewButton_3.setIcon(new ImageIcon(MainWindow.class.getResource("/img/Dessert.png")));
-			btnNewButton_3.setBackground(Color.WHITE);
+	private JButton getBtnFilterDesserts() {
+		if (btnFilterDesserts == null) {
+			btnFilterDesserts = new JButton("Desserts");
+			btnFilterDesserts.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DefaultComboBoxModel df = new DefaultComboBoxModel();
+					for (Product p : menu.getProductsByType("PO")) {
+						df.addElement(p);
+					}
+					cbProducts.setModel(df);
+				}
+			});
+			btnFilterDesserts.setHorizontalTextPosition(SwingConstants.CENTER);
+			btnFilterDesserts.setVerticalTextPosition(SwingConstants.BOTTOM);
+			btnFilterDesserts.setIcon(new ImageIcon(MainWindow.class.getResource("/img/Dessert.png")));
+			btnFilterDesserts.setBackground(Color.WHITE);
 		}
-		return btnNewButton_3;
+		return btnFilterDesserts;
 	}
 }

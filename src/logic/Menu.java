@@ -30,7 +30,9 @@ public class Menu {
 	public List<Product> getProductsByType(String code) {
 		List<Product> p = new ArrayList<Product>();
 		for (Product product : productsList) {
-			if(product.getCode() == code) {
+			char[] c = product.getCode().toCharArray();
+			String prod = String.valueOf(c[0]) + String.valueOf(c[1]);
+			if(prod.equals(code)) {
 				p.add(product);
 			}
 		}
